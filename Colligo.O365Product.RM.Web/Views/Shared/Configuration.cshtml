@@ -1,0 +1,22 @@
+﻿@{Layout = null;}
+ window.config={};
+ config.updraftVersion='@System.Configuration.ConfigurationManager.AppSettings["rmo:Version"]';
+ config.displayPageSize='@System.Configuration.ConfigurationManager.AppSettings["displayPageSize"]';
+@* sharepoint *@
+ config.getAllContentLog='@(Colligo.O365Product.APIConstant.SPService.SPServiceAPIUrl + Colligo.O365Product.APIConstant.SPService.GetAllContentType)';
+ config.getAllFieldsByContentId='@(Colligo.O365Product.APIConstant.SPService.SPServiceAPIUrl + Colligo.O365Product.APIConstant.SPService.GetAllFieldsByContentId)';
+config.searchSharepointSite='@(Colligo.O365Product.APIConstant.SPService.SPServiceAPIUrl + Colligo.O365Product.APIConstant.SPService.SearchSharepointSite)';
+
+@* web app *@
+ config.getSharePointRefreshToken='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.GetSharePointRefreshToken)';
+ config.getAllEventSetupByOrgUrl='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.GetAllEventSetupByOrgUrl)';
+ config.saveEventSetup='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.SaveEventSetup)';
+ config.updateEventSetup='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.UpdateEventSetup)';
+ config.saveEventSettingUser='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.SaveEventSettingUser)';
+ config.getEventSettingUser='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.GetEventSettingUser)';
+config.searchEventReport='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.SearchEventReport)';
+config.getAllDashboardContentLog='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.GetAllDashboardContentLog)';
+config.getEventSummary='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.GetEventSummary)';
+config.getContentAuditSummary='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.GetContentAuditSummary)';
+config.getTimeZone='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.GetTimeZone)';
+config.getEventSettingCount='@(Colligo.O365Product.APIConstant.RMWebApp.SiteUrl + Colligo.O365Product.APIConstant.RMWebApp.GetEventSettingCount)';

@@ -1,0 +1,175 @@
+﻿<div *ngIf="isProcessing">
+    <lightbox [loading]="isProcessing" [loaderMessage]="'loading...'"></lightbox>
+</div>
+<div *ngIf="showMessageBanner">
+    <message-banner [type]="messageBannerType" [message]="bannerMessage" (onMessageBannerClose)="onNotificationClose($event)"> </message-banner>
+</div>
+<div class="clearfix">
+</div>
+<form #eventSettingForm="ngForm">
+    <div class="page-header">
+        <h2>Event</h2>
+    </div>
+    <div class="content-main-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Site Url</label><asterik></asterik>
+                    <ngx-select [allowClear]="true"
+                                name="drpSites"
+                                optionValueField="url"
+                                optionTextField="name"
+                                [items]="siteCollection"
+                                [noAutoComplete]="true"
+                                [disabled]="false"
+                                [(ngModel)]="currentSetting.contentSiteUrl"
+                                placeholder="Select Site"
+                                [required]="true"
+                                (selectionChanges)="siteChanged($event)"
+                                [ngClass]="formControlClass"
+                                #drpSiteUrl>
+                        <ng-template ngx-select-option ngx-select-option-selected let-option let-text="text">
+                            <span [style]="isEventMapped(option.data.url)? style('font-weight:bold'):''" [style.font-weight]="bold" [innerHtml]="text"></span>
+                            {{getMappingCount(option.data.url)}}
+                        </ng-template>
+
+                    </ngx-select>
+                    <div *ngIf="drpSiteUrl.errors && (drpSiteUrl.dirty || drpSiteUrl.touched || drpSiteUrl.invalid)"
+                         class="alert alert-danger">
+                        <div class="error-msg" [hidden]="(!drpSiteUrl.errors.required)">
+                            Required Field
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Content Type</label>  <asterik></asterik>
+                    <ngx-select [allowClear]="true"
+                                name="drpContentType"
+                                optionValueField="id"
+                                optionTextField="name"
+                                [items]="contentType"
+                                [noAutoComplete]="true"
+                                [disabled]="contentTypeDisabled"
+                                [(ngModel)]="currentSetting.contentTypeId"
+                                placeholder="Select Content Type"
+                                [required]="true"
+                                (selectionChanges)="contentTypechanged($event)"
+                                [ngClass]="formControlClass"
+                                #drpContentType>
+                    </ngx-select>
+                    <div *ngIf="drpContentType.errors && (drpContentType.dirty || drpContentType.touched || drpContentType.invalid)"
+                         class="alert alert-danger">
+                        <div class="error-msg" [hidden]="(!drpContentType.errors.required)">
+                            Required Field
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label> Event Column Value</label> <asterik></asterik>
+                    <ngx-select [allowClear]="true"
+                                name="drpEventColumn"
+                                optionValueField="internalName"
+                                optionTextField="displayName"
+                                [items]="eventColumn"
+                                [noAutoComplete]="true"
+                                [disabled]="eventColumnDisabled"
+                                [(ngModel)]="currentSetting.eventColumnInternalName"
+                                [required]="true"
+                                placeholder="Select Event Column"
+                                (selectionChanges)="eventColumnChanged($event)"
+                                [ngClass]="formControlClass"
+                                #drpFields>
+                    </ngx-select>
+                    <div *ngIf="drpFields.errors && (drpFields.dirty || drpFields.touched || drpFields.invalid)"
+                         class="alert alert-danger">
+                        <div class="error-msg" [hidden]="(!drpFields.errors.required)">
+                            Required Field
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label> Comments</label>
+                    <textarea placeholder="Comments" name="txtComments" class="form-control" [(ngModel)]="currentSetting.comments"> </textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="container-check-radio">
+                        Active
+                        <input type="checkbox" name="isActive" [(ngModel)]="currentSetting.isActive" />
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row form-footer">
+        <div class="form-group w-100 text-right">
+            <input type="submit" class="btn btn-primary" [disabled]="eventSettingForm.invalid" (click)="saveEventSetting()" value="Save" />
+            <input type="button" class="btn btn-secondary" (click)="resetForm()" value="Reset" />
+            <input type="button" class="btn btn-secondary" (click)="cancelForm()" value="Cancel" />
+        </div>
+    </div>
+</form>
+
+<div *ngIf="hasEventSettings()" class="row">
+    <div class="col-12">
+        <div class="page-header">
+            <h2>Event List</h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table custom-table">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="w-25">
+                            Site Url
+                        </th>
+                        <th class="w-25">
+                            Content type
+                        </th>
+                        <th class="w-25">
+                            Event Column Name
+                        </th>
+                        <th class="w-25">
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let rowData of eventSettings">
+                    <td>
+                        {{rowData.contentSiteUrl}}
+                    </td>
+                    <td>
+                        {{rowData.contentType}}
+                    </td>
+                    <td>
+                        {{rowData.eventColumnName}}
+                    </td>
+                    <td>
+                        <a (click)="updateEventSetting(rowData)" class="status true">
+                            {{rowData.isActive ? 'Active' : 'In-Active' }}
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+

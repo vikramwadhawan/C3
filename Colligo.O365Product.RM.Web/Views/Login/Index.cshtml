@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "RMO";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="authentication-content">
+        <div class="authentication-content-wrapper">
+            <div class="authentication-header">
+                <img src="~/Content/Images/complee-logo.png" style="max-width: 80px;" />
+            </div>
+            <div class="d-sm-flex authentication-body">
+                <div class="authentication-content-left d-flex">
+                    <div class="align-self-center">
+                        <h1 class="main-heading">Compleesoft Compliance Centre</h1>
+                        <p>Please Login and start manage records retention date</p>
+                    </div>
+                </div>
+                <div class="authentication-content-right d-flex">
+                    <input type="button" class="btn btn-primary align-self-center btn-block" onclick="window.location.href='/login/signin'" value="Login with O365 Credentials" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

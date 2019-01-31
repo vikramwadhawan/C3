@@ -1,0 +1,76 @@
+﻿<div *ngIf="isProcessing">
+    <lightbox [loading]="isProcessing" [loaderMessage]="'loading...'"></lightbox>
+</div>
+<div *ngIf="showMessageBanner">
+    <message-banner [type]="messageBannerType" [message]="bannerMessage" (onMessageBannerClose)="onNotificationClose($event)"> </message-banner>
+</div>
+<div>
+    <div class="dashboard-highlights d-flex justify-content-center">
+        <div class="tiles item-success">
+            <h6>Active Content Type</h6>
+            <h4>{{eventReport.totalActiveContentType}}</h4>
+        </div>
+        <div (click)="showErrorLogs('itemprocessed')" class="tiles event">
+            <h6>Items Processed Today</h6>
+            <h4>{{eventReport.itemProcessedToday}}</h4>
+        </div>
+        <div class="tiles item-success">
+            <h6>Events Created Today</h6>
+            <h4>{{eventReport.eventCreatedToday}}</h4>
+        </div>
+        <div class="tiles item-success">
+            <h6>Events Updated Today</h6>
+            <h4>{{eventReport.eventUpdatedToday}}</h4>
+        </div>
+        <div class="tiles event">
+            <h6>Items Processed to date</h6>
+            <h4>{{eventReport.itemProcessedToDate}}</h4>
+        </div>
+        <div (click)="showErrorLogs('error')" class="tiles item-fail">
+            <h6>Items with Errors to date</h6>
+            <h4>{{eventReport.itemErrorsToDate}}</h4>
+        </div>
+        <div class="tiles item-success">
+            <h6>Events created to Date</h6>
+            <h4>{{eventReport.eventCreatedToDate}}</h4>
+        </div>
+    </div>
+
+    <div class="row dashboard-filter">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-4">
+                    <label>Start Date</label>
+                    <input class="form-control" type="date" name="dtStart" [(ngModel)]="startDate" #dtStartDate>
+                </div>
+                <div class="col-4">
+                    <label>End Date</label>
+                    <input class="form-control" type="date" name="dtEnd" [(ngModel)]="endDate" min="{{dtStartDate.value}}" #dtEndDate>
+                </div>
+                <div class="col-2 d-flex align-items-end">
+                    <button type="button" class="btn btn-primary" (click)="refreshDetail()" title="Refresh">
+                        <i class="fa fa-redo-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showChart" style="display: block" class="row">
+        <div class="col-12">
+            <div class="chart-canvas">
+                <canvas baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [colors]="chartColors"
+                    [chartType]="barChartType">
+                </canvas>
+
+            </div>            
+        </div>
+    </div>
+</div>
+
+

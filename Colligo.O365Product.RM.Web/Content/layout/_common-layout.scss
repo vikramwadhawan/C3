@@ -1,0 +1,152 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the common site/application.
+// -----------------------------------------------------------------------------
+//@import '~assets/scss/vendor/bootstrap';
+label {
+  @include font-weight(600);
+  font-size: convert(16, px, rems); 
+}
+
+label.req-attr::after {
+  content: '*';
+  color: red;
+}
+
+.relative {
+  position: relative;
+}
+
+.popover {
+  max-width: 18.75rem;
+}
+
+// File brouse common css
+.main-section-browse {
+  position: relative;
+  .form-control-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  .browse-btn {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: .3rem 1.5rem;
+    font-weight: normal;
+    width: 6rem;
+  }
+  p {
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+} // File brouse common css
+.horizontal-line {
+  width: 100%;
+  border-bottom: 1px solid $border-color;
+  margin: 0 0 1.25rem 0;
+}
+
+.content-main-section {
+  background: $seconday-bg;
+  padding: 1.75rem 2.50rem;
+  // border: solid 1px $border-color;
+
+  .sub-heading{
+    font-size: convert(20, px, rems);
+    margin-bottom: convert(25, px, rems);
+  }
+}
+
+.btn-row {
+  margin-top: 2rem;
+}
+
+.btn-row-pagination {
+  margin-top: -1.5rem;
+  max-width: 50%;
+}
+
+// Common heading
+.page-header {
+    margin-bottom: 10px;
+    h2 {
+        @include font-weight(800);
+        @extend .text-uppercase;
+        margin: 0;
+        font-size: convert(24, px, rems);
+    }
+
+    p {
+        color: $light-200;
+        font-size: convert(13, px, rems);
+    }
+}
+
+@include media-breakpoint-between(xs, sm) {
+  .btn-row-pagination {
+    margin-top: 1.5rem;
+  }
+  .content-main-section {
+    padding: 1.75rem 1.50rem;
+  }
+}
+
+@include media-breakpoint-between(xs, md) {
+  .btn-row-pagination {
+    margin-top: 1.5rem !important;
+  }
+  .custom-calendar {
+    .content-main-section {
+      padding: 1.75rem 1.50rem;
+    }
+  }
+}
+
+.custom-table.table {
+    border: 1px solid #e7e6e6;
+    table-layout: fixed;
+
+    .thead-light {
+        th {
+            background-color: #f3f3f3;
+        }
+    }
+
+    td {
+        word-break: break-word;
+    }
+
+    .td-w-15 {
+        width: 15%;
+        max-width: 15%;
+    }
+
+    .td-w-20 {
+        width: 20%;
+        max-width: 20%;
+    }
+
+    .status {
+        @extend .text-uppercase;
+        font-weight: 600;
+        color: $white;
+        @include border-radius(26px);
+        padding: 2px 14px;
+        min-width: 100px;
+        float: left;
+        @extend .text-center;
+
+        &.true {
+            background-color: #49cfa4;
+        }
+
+        &.false {
+            background-color: #fe8080;
+        }
+    }
+}
+

@@ -1,0 +1,61 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+/// Regular font family
+$font-family-sans-serif: "Open Sans", sans-serif;
+$font-family-base: $font-family-sans-serif;
+
+// font base font
+$font-size-base: 1rem;
+
+$btn-font-weight: 400;
+
+// input type
+$input-btn-padding-y: 0.865rem;
+
+$input-padding-y: $input-btn-padding-y;
+
+$enable-shadows: true;
+// Colors
+$lime: #ed7a01;
+$light-lime: #AAAF37;
+$blue: #122a59;
+$dark-red:rgb(223, 47, 24);
+$white: #fff;
+$black: #000;
+$light-yellow: #fefff0;
+$light-grey: #f3f3f3;
+$light-100: #DEDEDE;
+$light-200: #6D6D6D;
+$light-300: #a8a8a8;
+$light-400: #cfcfcf;
+$dark-grey: #212529;
+$dark-color:#333333;
+//$input-border-color:#ced4da;
+
+// theme variable
+$primary: $lime;
+$secondary: $black;
+$brand-color: $primary;
+$highlight-brand-color: $light-lime;
+$link-color: $blue;
+$body-bg: $white;
+$body-color: $secondary;
+$border-color: $light-400;
+$seconday-bg: $light-grey;
+
+$theme-colors: ();
+$theme-colors: map-merge(
+  (
+    "primary": $primary,
+    "seconday-bg": $seconday-bg,
+    "body-bg": $body-bg,
+    "light-bg": $light-grey
+    ),
+  $theme-colors
+);
+
+/// Relative or absolute URL where all assets are served from
+/// @type String
+$base-url: "/assets/" !default;

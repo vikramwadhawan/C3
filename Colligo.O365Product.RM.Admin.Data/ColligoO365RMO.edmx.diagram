@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="af8039412cd2455893a6668e937c10a7" Name="Diagram1" >
+        <EntityTypeShape EntityType="ColligoO365RMOModel.ErrorMessage" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.VwProductDetail" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.ContentLog" Width="1.5" PointX="9.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.EventSetting" Width="1.5" PointX="9.375" PointY="10.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.Organization" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.Product" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.ProductLicense" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.ProductUser" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.SystemUser" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.VwOrganization" Width="1.875" PointX="0.75" PointY="8.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.VwOrganizationUserLicense" Width="2.125" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.ADGAgent" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.VwEventSetting" Width="1.5" PointX="11.375" PointY="9.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.VwADGAgent" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.VwEventSettingUserSetup" Width="1.5" PointX="13.375" PointY="5.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.OrganizationUser" Width="2" PointX="13.375" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.VwOrganizationUser" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ColligoO365RMOModel.AgentExecutionTime" Width="1.5" PointX="13.375" PointY="11.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

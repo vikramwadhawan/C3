@@ -1,0 +1,48 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+.navbar {
+    &.header-bg {
+        background-color: $body-bg;
+        padding: 0.25rem 1rem;
+        box-shadow: 0 0px 6px rgba(0,0,0,.175);
+
+        .fa-bell {
+            font-size: 1.2rem;
+        }
+
+        &.navbar-dark {
+            .navbar-nav {
+                .nav-link {
+                    color: $secondary;
+                }
+            }
+        }
+    }
+}
+.logout {
+    cursor: pointer;
+    font-weight: normal;
+}
+
+@include media-breakpoint-between(xs, md) {
+    .navbar{
+        &.header-bg{
+            padding: 0.25rem 0.70rem;
+            .navbar-nav{
+                display: block;
+        
+                .nav-item{
+                    display: inline-flex;
+                    padding: 0.3rem;
+                }
+            }
+        
+        
+            .navbar-toggler{
+                margin-left: 0.5rem;
+            }
+        }
+    }
+}

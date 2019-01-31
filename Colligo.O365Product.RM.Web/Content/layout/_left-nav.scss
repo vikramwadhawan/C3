@@ -1,0 +1,72 @@
+.dashboard-area-nav {
+    list-style-type: none;
+    padding: 8px;
+    background-color: map-get($theme-colors, "light-bg");
+    width: 117px;
+    height: 89%;
+    @include transition(1s);
+    position: fixed;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        float: left;
+        width: 100%;
+        background-color: map-get($theme-colors, "body-bg");
+        height: 100%;
+
+        .hover-effect {
+            background-color: map-get($theme-colors, "light-bg");
+            border-radius: 0;
+            cursor: pointer;
+            @include transition(0.5s);
+            text-decoration: none;
+        }
+
+        li {
+            width: 100%;
+            float: left;
+
+            a {
+                padding: 14% 6%;
+                font-size: convert(13, px, rems);
+                font-weight: 600;
+                @extend .text-center;
+                @extend .text-uppercase;
+                line-height: 28px;
+                outline: none;
+                width: 100%;
+                float: left;
+
+                .fa {
+                    color: #938f8c;
+                }
+
+                span {
+                    color: $secondary;
+                }
+
+                &:hover {
+                    @extend .hover-effect;
+                }
+
+                &.active-selection {
+                    @extend .hover-effect;
+                }
+            }
+        }
+    }
+}
+
+/*@include media-breakpoint-between(xs, md) {
+    .dashboard-area-nav {
+        margin-left: -208px;
+        position: absolute;
+        z-index: 1000;
+        top: 0;
+    }
+}
+
+.dashboard-area-nav-slide {
+    margin-left: 0;
+}*/

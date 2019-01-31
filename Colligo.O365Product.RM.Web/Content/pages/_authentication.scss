@@ -1,0 +1,94 @@
+
+
+.authentication-bg {
+    background-color: #eaeaea;
+}
+.authentication-content {
+    height: 60vh;
+    width: 73%;
+    margin: 0 auto;
+    margin-top: 10%;
+
+    .authentication-content-wrapper {
+        border-width: 1px;
+        background-color: #fff;
+        height: 100%;
+
+        .authentication-header {
+            width: 100%;
+            padding: 0.5rem;
+            @extend .text-center;
+            border-bottom: solid 1px #eaeaea;
+        }
+
+        .authentication-body {
+            height: calc(100% - 66px);
+        }
+
+        .authentication-content-left {
+            padding: 2rem;
+            width: 50%;
+            background-color: #122a59;
+            @extend .text-center;
+
+            .main-heading {
+                // @extend .text-uppercase;
+                font-size: convert(26, px, rems);
+                font-weight: 600;
+            }
+        }
+
+        .authentication-content-right {
+            padding: 2rem;
+            width: 50%;
+            background-color: #fff;
+
+            .btn {
+                padding: 1rem 1.5rem;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-between(xs, sm) {
+    .authentication-content {
+        width: 100%;
+
+        .authentication-content-wrapper {
+            height: auto;
+            .authentication-header {
+                width: 100%;
+                padding: 0.5rem;
+                border-bottom: solid 1px #eaeaea;
+
+                img {
+                    max-width: 100%;
+                }
+            }
+
+            .authentication-content-left {
+                width: 100%;
+
+                .main-heading {
+                    font-size: convert(26, px, rems);
+                    font-weight: 600;
+                }
+            }
+
+            .authentication-content-right {
+                padding: 2rem;
+                width: 100%;
+
+                .btn {
+                    padding: 1rem 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-between(sm, md) {
+    .authentication-content {
+        width: 100%;
+    }
+}

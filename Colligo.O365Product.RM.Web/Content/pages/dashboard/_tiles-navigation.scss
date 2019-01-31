@@ -1,0 +1,62 @@
+
+.tiles-heading{
+    @extend .text-uppercase;
+
+}
+
+.tiles-container{
+.tiles-shape{
+    background-color: $seconday-bg;
+    min-height: 41.5vh;
+    display: block;
+    border: solid 1px #ccc;
+    cursor: pointer;
+    transition: all .25s ease-in;
+    &:hover, &:focus{ 
+        background-color: #93962f;
+        color:#fff;
+    }
+}
+
+.tiles-itom
+{
+    margin: 0 auto;
+    text-align: center;
+
+    p{font-size: 1.5rem; 
+      text-transform: uppercase;
+      margin-top:.5rem;
+      margin-bottom: 0rem;
+    }
+}
+
+}
+
+@include media-breakpoint-between(xs, md) {
+    .tiles-container {
+
+        .tiles-shape{
+             border: solid 1px #ccc !important;
+             min-height: 32vh;
+        }
+        }
+    
+    }
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+

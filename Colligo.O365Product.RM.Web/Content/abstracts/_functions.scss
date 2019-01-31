@@ -1,0 +1,55 @@
+// Covers Major Functions
+// Date: 07/May/2018
+
+// Author : Satish Singh
+
+
+/// Native `url(..)` function wrapper
+/// @param {String} $base - base URL for the asset
+/// @param {String} $type - asset type folder (e.g. `fonts/`)
+/// @param {String} $path - asset path
+/// @return {Url}
+@function asset($base, $type, $path) {
+  @return url($base + $type + $path);
+}
+
+/// Returns URL to an image based on its path
+/// @param {String} $path - image path
+/// @param {String} $base [$base-url] - base URL
+/// @return {Url}
+/// @require $base-url
+@function image($path, $base: $base-url) {
+  @return asset($base, 'images/', $path);
+}
+
+/// Returns URL to a font based on its path
+/// @param {String} $path - font path
+/// @param {String} $base [$base-url] - base URL
+/// @return {Url}
+/// @require $base-url
+@function font($path, $base: $base-url) {
+  @return asset($base, 'fonts/', $path);
+}
+
+// Font conversion function
+@function convert($value, $currentUnit, $convertUnit){
+  @if $currentUnit == px{
+
+    @if $convertUnit == rems{
+      @return $value / 16 + 0rem;
+    }
+    @else if $convertUnit == percent{
+      @return percentage($value / 16);
+    }
+
+  }@else if $currentUnit == ems{
+
+    @if $convertUnit == px{
+      @return $value * 16 + 0em;
+    }
+    @else if $convertUnit == percent{
+      @return percentage($value);
+    }
+
+  }
+}

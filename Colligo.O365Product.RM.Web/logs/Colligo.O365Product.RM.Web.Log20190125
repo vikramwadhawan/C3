@@ -1,0 +1,5 @@
+2019-01-25 16:35:42,967 [10] INFO  Sigining In. Missing Id_token in session
+2019-01-25 16:35:50,913 [15] INFO  Authorization complete.
+2019-01-25 16:35:50,936 [15] INFO  Got Id_token and authorization code
+2019-01-25 16:35:56,803 [11] INFO  Received idToken from session
+2019-01-25 16:35:56,815 [11] INFO  Getting site from colligoapp as: https://cgotek.sharepoint.com

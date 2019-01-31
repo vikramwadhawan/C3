@@ -1,0 +1,73 @@
+
+.wrapper-dashboard {
+  color: $body-bg;
+}
+
+
+.dashboard-area {
+    height: calc(100vh - 65px);
+    position: relative;
+
+    .dashboard-area-content {
+        color: $body-color;
+        padding: 1.25rem 1.80rem 1.80rem 1.80rem;
+        width: 100%;
+        margin-left: 117px;
+    }
+}
+
+.form-footer{
+    margin: 30px 0;
+    .btn{
+        margin-left: 8px;
+    }
+}
+
+.dashboard-highlights {
+    .tiles {
+        border: 1px solid #c8c8c8;
+        padding: 1rem;
+        margin: 0 10px;
+        @extend .text-center;
+
+        h6 {
+            @extend .text-uppercase;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        h4 {
+            padding-top: 14px;
+            margin-bottom: 0;
+        }
+
+        h5, h6 {
+            margin: 0;
+        }
+
+        &.item-success {
+            border-bottom: #00bb5c 6px solid;
+        }
+
+        &.item-fail {
+            border-bottom: #e00030 6px solid;
+        }
+
+        &.event {
+            border-bottom: #ffce56 6px solid;
+        }
+    }
+}
+
+.dashboard-filter {
+    margin: 26px 0;
+    background: $seconday-bg;
+    padding: 1rem 0.3rem;
+}
+
+.chart-canvas{
+    width: 58%;
+    max-width: 58%;
+    height: auto;
+    margin: 0 auto;
+}

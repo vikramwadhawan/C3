@@ -1,0 +1,25 @@
+<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script>@{
+                /**/
+
+                /**/
+
+                ViewBag.Title = "Index";
+}
+
+<div id="dvRmoApp">
+    <rmo-app>This is RMO</rmo-app>
+</div>
+
+@section  scripts
+{
+    <script type="text/javascript" src="@Url.Action("configuration")"></script>
+    <script>
+          var idToken = '@ViewBag.Token';
+        var tenantUrl = '@ViewBag.TenantUrl';
+        window.localStorage.setItem('userName', '@ViewBag.userEmail');
+        window.localStorage.setItem('userId', '@ViewBag.userId');
+         window.localStorage.setItem('orgId', '@ViewBag.orgMasterId');
+    </script>
+    <script src="~/Scripts/Custom/index.js"></script>
+    @Scripts.Render("~/bundles/angular")
+}

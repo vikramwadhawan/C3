@@ -1,0 +1,29 @@
+﻿<Project ToolsVersion="4.0"
+         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ExcludeFromPackageFolders Include="App;scripts\out-tsc">
+      <FromTarget>Colligo.O365Product.RM.Web.wpp.targets</FromTarget>
+    </ExcludeFromPackageFolders>
+    <!--<ExcludeFromPackageFiles Include="Scripts\libs\main.js;Scripts\libs\main.js.map;Scripts\libs\polyfills.js;Scripts\libs\polyfills.js.map;Scripts\libs\runtime.js;Scripts\libs\runtime.js.map;Scripts\libs\styles.js;Scripts\libs\styles.js.map;Scripts\libs\vendor.js;Scripts\libs\vendor.js.map;">
+      <FromTarget>Colligo.O365Product.RM.Web.wpp.targets</FromTarget>
+    </ExcludeFromPackageFiles>-->
+  </ItemGroup>
+  <PropertyGroup>
+    <CollectFilesFromContentDependsOn>
+      AddFilesToDeploy;
+      $(CollectFilesFromContentDependsOn);
+    </CollectFilesFromContentDependsOn>
+  </PropertyGroup>
+  <!--Add files to deploy -->
+  <Target Name="AddFilesToDeploy">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="CurrentAssembly" />
+    </GetAssemblyIdentity>
+    <ItemGroup>
+      <JsFile Include="Scripts\libs\*.js" />
+      <FilesForPackagingFromProject Include="%(JsFile.Identity)">
+        <DestinationRelativePath>Scripts\libs\%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>
+</Project>

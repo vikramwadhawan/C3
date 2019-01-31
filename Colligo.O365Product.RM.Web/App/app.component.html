@@ -1,0 +1,42 @@
+﻿<!-- Dashboard Left Navigation -->
+<div class="dashboard-area d-flex">
+    <div *ngIf="false">
+        <button (click)="changeMenu()" value="click me" type="button"> click me </button>
+        {{showMenu}}
+    </div>
+    <div [ngClass]="{'dashboard-area-nav':true, 'side-toggle':showMenu}" >
+        <ul>
+            <li>
+                <a routerLink="/dashboard" routerLinkActive="active">
+                    <i class="fa fa-tachometer-alt fa-2x"></i>
+                    <div class="clearfix"></div>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/organization" routerLinkActive="active">
+                    <i class="fa fa-link fa-2x"></i>
+                    <div class="clearfix"></div>
+                    <span>Site Access</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/eventsetup" routerLinkActive="active">
+                    <i class="fa fa-calendar fa-2x"></i>
+                    <div class="clearfix"></div>
+                    <span>Event</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/auditlog" routerLinkActive="active">
+                    <i class="fa fa-home fa-2x"></i>
+                    <div class="clearfix"></div>
+                    <span>Audit History</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="dashboard-area-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

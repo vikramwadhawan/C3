@@ -1,0 +1,1442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ColligoO365RMOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADGAgent">
+          <Key>
+            <PropertyRef Name="ADGAgentId" />
+          </Key>
+          <Property Name="ADGAgentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContentLogId" Type="bigint" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="ContentType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ComplianceTag" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ComplianceTagId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ComplainceAssetId" Type="varchar" MaxLength="100" />
+          <Property Name="EventColumnValue" Type="datetime" Nullable="false" />
+          <Property Name="DocId" Type="varchar(max)" />
+          <Property Name="IsProcessed" Type="bit" Nullable="false" />
+          <Property Name="ProcessStatus" Type="varchar" MaxLength="50" />
+          <Property Name="ProcessDescription" Type="varchar(max)" />
+          <Property Name="LibraryName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AgentExecutionTime">
+          <Key>
+            <PropertyRef Name="AgentExecutionTimeId" />
+          </Key>
+          <Property Name="AgentExecutionTimeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="TimeZoneDisplayName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TimeZone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Time" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ContentLog">
+          <Key>
+            <PropertyRef Name="ContentLogId" />
+          </Key>
+          <Property Name="ContentLogId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="ContentType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContentTypeId" Type="varchar(max)" Nullable="false" />
+          <Property Name="DocId" Type="varchar(max)" />
+          <Property Name="LastModifiedTime" Type="datetime" Nullable="false" />
+          <Property Name="FileType" Type="varchar" MaxLength="100" />
+          <Property Name="Title" Type="varchar(max)" />
+          <Property Name="EventColumnValue" Type="datetime" />
+          <Property Name="Author" Type="varchar" MaxLength="100" />
+          <Property Name="ComplianceTag" Type="varchar" MaxLength="100" />
+          <Property Name="ComplianceTagId" Type="varchar" MaxLength="100" />
+          <Property Name="ComplainceAssetId" Type="varchar" MaxLength="100" />
+          <Property Name="DocUrl" Type="varchar(max)" Nullable="false" />
+          <Property Name="IsProcessed" Type="bit" Nullable="false" />
+          <Property Name="LibraryName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="DocumentName" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ErrorMessage">
+          <Key>
+            <PropertyRef Name="ErrorMessageId" />
+          </Key>
+          <Property Name="ErrorMessageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ErrorKey" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EventSetting">
+          <Key>
+            <PropertyRef Name="EventSettingId" />
+          </Key>
+          <Property Name="EventSettingId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="ContentType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContentTypeId" Type="varchar(max)" Nullable="false" />
+          <Property Name="EventColumnName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EventColumnInternalName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="LastRetrivalTime" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ContentSiteUrl" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="OrganizationMasterId" />
+          </Key>
+          <Property Name="OrganizationMasterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrganizationRootUrl" Type="varchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrganizationUser">
+          <Key>
+            <PropertyRef Name="OrganizationUserId" />
+          </Key>
+          <Property Name="OrganizationUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="UserAccessTo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductLicense">
+          <Key>
+            <PropertyRef Name="ProductLicenseId" />
+          </Key>
+          <Property Name="ProductLicenseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="OrganizationId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="LicenseCount" Type="int" Nullable="false" />
+          <Property Name="LicenseUsed" Type="int" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductUser">
+          <Key>
+            <PropertyRef Name="ProductUserId" />
+          </Key>
+          <Property Name="ProductUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="SystemUserId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SystemUser">
+          <Key>
+            <PropertyRef Name="SystemUserId" />
+          </Key>
+          <Property Name="SystemUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="101" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ColligoO365RMO.dbo.VwADGAgent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwADGAgent">
+          <Key>
+            <PropertyRef Name="ADGAgentId" />
+            <PropertyRef Name="ContentLogId" />
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="ContentType" />
+            <PropertyRef Name="ComplianceTag" />
+            <PropertyRef Name="ComplianceTagId" />
+            <PropertyRef Name="EventColumnValue" />
+            <PropertyRef Name="IsProcessed" />
+            <PropertyRef Name="LibraryName" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedOn" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="UserIsActive" />
+          </Key>
+          <Property Name="ADGAgentId" Type="bigint" Nullable="false" />
+          <Property Name="ContentLogId" Type="bigint" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="ContentType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ComplianceTag" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ComplianceTagId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ComplainceAssetId" Type="varchar" MaxLength="100" />
+          <Property Name="EventColumnValue" Type="datetime" Nullable="false" />
+          <Property Name="DocId" Type="varchar(max)" />
+          <Property Name="IsProcessed" Type="bit" Nullable="false" />
+          <Property Name="ProcessStatus" Type="varchar" MaxLength="50" />
+          <Property Name="ProcessDescription" Type="varchar(max)" />
+          <Property Name="LibraryName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserIsActive" Type="bit" Nullable="false" />
+          <Property Name="ADGProcessId" Type="nvarchar" MaxLength="240" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ColligoO365RMO.dbo.VwEventSetting' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwEventSetting">
+          <Key>
+            <PropertyRef Name="EventSettingId" />
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="ContentType" />
+            <PropertyRef Name="ContentTypeId" />
+            <PropertyRef Name="EventColumnName" />
+            <PropertyRef Name="EventColumnInternalName" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedOn" />
+            <PropertyRef Name="OrganizationRootUrl" />
+            <PropertyRef Name="ContentSiteUrl" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="UserIsActive" />
+          </Key>
+          <Property Name="EventSettingId" Type="bigint" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="ContentType" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContentTypeId" Type="varchar(max)" Nullable="false" />
+          <Property Name="EventColumnName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EventColumnInternalName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastRetrivalTime" Type="datetime" />
+          <Property Name="OrganizationRootUrl" Type="varchar(max)" Nullable="false" />
+          <Property Name="ContentSiteUrl" Type="varchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserIsActive" Type="bit" Nullable="false" />
+          <Property Name="TimeZone" Type="varchar" MaxLength="50" />
+          <Property Name="Time" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ColligoO365RMO.dbo.VwEventSettingUserSetup' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwEventSettingUserSetup">
+          <Key>
+            <PropertyRef Name="OrganizationRootUrl" />
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="IsOrganizationActive" />
+            <PropertyRef Name="OrganizationUserId" />
+            <PropertyRef Name="IsOrganizationUserActive" />
+          </Key>
+          <Property Name="OrganizationRootUrl" Type="varchar(max)" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="OrganizationName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrganizationId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsOrganizationActive" Type="bit" Nullable="false" />
+          <Property Name="OrganizationUserId" Type="int" Nullable="false" />
+          <Property Name="IsOrganizationUserActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ColligoO365RMO.dbo.VwOrganization' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwOrganization">
+          <Key>
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="OrganizationRootUrl" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="OrganizationMasterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizationId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="OrganizationName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrganizationRootUrl" Type="varchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ColligoO365RMO.dbo.VwOrganizationUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwOrganizationUser">
+          <Key>
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="SystemUserId" />
+            <PropertyRef Name="EmailAddress" />
+            <PropertyRef Name="DisplayName" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="IsOrganizationActive" />
+            <PropertyRef Name="IsUserActive" />
+            <PropertyRef Name="OrganizationRootUrl" />
+          </Key>
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="OrganizationName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrganizationId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SystemUserId" Type="int" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="101" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsOrganizationActive" Type="bit" Nullable="false" />
+          <Property Name="IsUserActive" Type="bit" Nullable="false" />
+          <Property Name="OrganizationRootUrl" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ColligoO365RMO.dbo.VwOrganizationUserLicense' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwOrganizationUserLicense">
+          <Key>
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="IsOrganizationActive" />
+          </Key>
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="OrganizationName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrganizationId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SystemUserId" Type="int" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="100" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="101" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="IsOrganizationActive" Type="bit" Nullable="false" />
+          <Property Name="IsUserActive" Type="bit" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="Description" Type="varchar" MaxLength="20" />
+          <Property Name="IsProductActive" Type="bit" />
+          <Property Name="LicenseCount" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="IsProductUserActive" Type="bit" />
+          <Property Name="LicenseUsed" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ColligoO365RMO.dbo.VwProductDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VwProductDetail">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="IsProductActive" />
+            <PropertyRef Name="LicenseCount" />
+            <PropertyRef Name="OrganizationMasterId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsProductActive" Type="bit" Nullable="false" />
+          <Property Name="LicenseCount" Type="int" Nullable="false" />
+          <Property Name="LicenseUsed" Type="int" />
+          <Property Name="OrganizationMasterId" Type="int" Nullable="false" />
+          <Property Name="SystemUserId" Type="int" />
+          <Property Name="IsProductUserActive" Type="bit" />
+        </EntityType>
+        <Function Name="UspEventSettingGetMappingCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizationUrl" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="UspReportADGAgent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizationUrl" Type="varchar(max)" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="Status" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UspReportChartData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizationUrl" Type="varchar(max)" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="UspReportContentAuditSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizationUrl" Type="varchar(max)" Mode="In" />
+          <Parameter Name="SearchTerm" Type="varchar(max)" Mode="In" />
+          <Parameter Name="PageNbr" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UspReportGetContentLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizationUrl" Type="varchar(max)" Mode="In" />
+          <Parameter Name="StartDate" Type="datetime" Mode="In" />
+          <Parameter Name="EndDate" Type="datetime" Mode="In" />
+          <Parameter Name="CountError" Type="bit" Mode="In" />
+          <Parameter Name="PageNbr" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ColligoO365RMOModelStoreContainer">
+          <EntitySet Name="ADGAgent" EntityType="Self.ADGAgent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgentExecutionTime" EntityType="Self.AgentExecutionTime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContentLog" EntityType="Self.ContentLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ErrorMessage" EntityType="Self.ErrorMessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventSetting" EntityType="Self.EventSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrganizationUser" EntityType="Self.OrganizationUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductLicense" EntityType="Self.ProductLicense" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductUser" EntityType="Self.ProductUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemUser" EntityType="Self.SystemUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VwADGAgent" EntityType="Self.VwADGAgent" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwADGAgent].[ADGAgentId] AS [ADGAgentId], 
+    [VwADGAgent].[ContentLogId] AS [ContentLogId], 
+    [VwADGAgent].[OrganizationMasterId] AS [OrganizationMasterId], 
+    [VwADGAgent].[ContentType] AS [ContentType], 
+    [VwADGAgent].[ComplianceTag] AS [ComplianceTag], 
+    [VwADGAgent].[ComplianceTagId] AS [ComplianceTagId], 
+    [VwADGAgent].[ComplainceAssetId] AS [ComplainceAssetId], 
+    [VwADGAgent].[EventColumnValue] AS [EventColumnValue], 
+    [VwADGAgent].[DocId] AS [DocId], 
+    [VwADGAgent].[IsProcessed] AS [IsProcessed], 
+    [VwADGAgent].[ProcessStatus] AS [ProcessStatus], 
+    [VwADGAgent].[ProcessDescription] AS [ProcessDescription], 
+    [VwADGAgent].[LibraryName] AS [LibraryName], 
+    [VwADGAgent].[CreatedBy] AS [CreatedBy], 
+    [VwADGAgent].[CreatedOn] AS [CreatedOn], 
+    [VwADGAgent].[UserId] AS [UserId], 
+    [VwADGAgent].[Password] AS [Password], 
+    [VwADGAgent].[UserIsActive] AS [UserIsActive], 
+    [VwADGAgent].[ADGProcessId] AS [ADGProcessId]
+    FROM [dbo].[VwADGAgent] AS [VwADGAgent]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwEventSetting" EntityType="Self.VwEventSetting" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwEventSetting].[EventSettingId] AS [EventSettingId], 
+    [VwEventSetting].[OrganizationMasterId] AS [OrganizationMasterId], 
+    [VwEventSetting].[ContentType] AS [ContentType], 
+    [VwEventSetting].[ContentTypeId] AS [ContentTypeId], 
+    [VwEventSetting].[EventColumnName] AS [EventColumnName], 
+    [VwEventSetting].[EventColumnInternalName] AS [EventColumnInternalName], 
+    [VwEventSetting].[IsActive] AS [IsActive], 
+    [VwEventSetting].[Comments] AS [Comments], 
+    [VwEventSetting].[CreatedBy] AS [CreatedBy], 
+    [VwEventSetting].[CreatedOn] AS [CreatedOn], 
+    [VwEventSetting].[LastRetrivalTime] AS [LastRetrivalTime], 
+    [VwEventSetting].[OrganizationRootUrl] AS [OrganizationRootUrl], 
+    [VwEventSetting].[ContentSiteUrl] AS [ContentSiteUrl], 
+    [VwEventSetting].[UserId] AS [UserId], 
+    [VwEventSetting].[Password] AS [Password], 
+    [VwEventSetting].[UserIsActive] AS [UserIsActive], 
+    [VwEventSetting].[TimeZone] AS [TimeZone], 
+    [VwEventSetting].[Time] AS [Time]
+    FROM [dbo].[VwEventSetting] AS [VwEventSetting]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwEventSettingUserSetup" EntityType="Self.VwEventSettingUserSetup" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwEventSettingUserSetup].[OrganizationRootUrl] AS [OrganizationRootUrl], 
+    [VwEventSettingUserSetup].[OrganizationMasterId] AS [OrganizationMasterId], 
+    [VwEventSettingUserSetup].[OrganizationName] AS [OrganizationName], 
+    [VwEventSettingUserSetup].[OrganizationId] AS [OrganizationId], 
+    [VwEventSettingUserSetup].[IsOrganizationActive] AS [IsOrganizationActive], 
+    [VwEventSettingUserSetup].[OrganizationUserId] AS [OrganizationUserId], 
+    [VwEventSettingUserSetup].[IsOrganizationUserActive] AS [IsOrganizationUserActive]
+    FROM [dbo].[VwEventSettingUserSetup] AS [VwEventSettingUserSetup]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwOrganization" EntityType="Self.VwOrganization" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwOrganization].[OrganizationMasterId] AS [OrganizationMasterId], 
+    [VwOrganization].[OrganizationId] AS [OrganizationId], 
+    [VwOrganization].[OrganizationName] AS [OrganizationName], 
+    [VwOrganization].[OrganizationRootUrl] AS [OrganizationRootUrl], 
+    [VwOrganization].[IsActive] AS [IsActive]
+    FROM [dbo].[VwOrganization] AS [VwOrganization]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwOrganizationUser" EntityType="Self.VwOrganizationUser" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwOrganizationUser].[OrganizationMasterId] AS [OrganizationMasterId], 
+    [VwOrganizationUser].[OrganizationName] AS [OrganizationName], 
+    [VwOrganizationUser].[OrganizationId] AS [OrganizationId], 
+    [VwOrganizationUser].[SystemUserId] AS [SystemUserId], 
+    [VwOrganizationUser].[EmailAddress] AS [EmailAddress], 
+    [VwOrganizationUser].[DisplayName] AS [DisplayName], 
+    [VwOrganizationUser].[FirstName] AS [FirstName], 
+    [VwOrganizationUser].[LastName] AS [LastName], 
+    [VwOrganizationUser].[IsOrganizationActive] AS [IsOrganizationActive], 
+    [VwOrganizationUser].[IsUserActive] AS [IsUserActive], 
+    [VwOrganizationUser].[OrganizationRootUrl] AS [OrganizationRootUrl]
+    FROM [dbo].[VwOrganizationUser] AS [VwOrganizationUser]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwOrganizationUserLicense" EntityType="Self.VwOrganizationUserLicense" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwOrganizationUserLicense].[OrganizationMasterId] AS [OrganizationMasterId], 
+    [VwOrganizationUserLicense].[OrganizationName] AS [OrganizationName], 
+    [VwOrganizationUserLicense].[OrganizationId] AS [OrganizationId], 
+    [VwOrganizationUserLicense].[SystemUserId] AS [SystemUserId], 
+    [VwOrganizationUserLicense].[EmailAddress] AS [EmailAddress], 
+    [VwOrganizationUserLicense].[DisplayName] AS [DisplayName], 
+    [VwOrganizationUserLicense].[FirstName] AS [FirstName], 
+    [VwOrganizationUserLicense].[LastName] AS [LastName], 
+    [VwOrganizationUserLicense].[IsOrganizationActive] AS [IsOrganizationActive], 
+    [VwOrganizationUserLicense].[IsUserActive] AS [IsUserActive], 
+    [VwOrganizationUserLicense].[Name] AS [Name], 
+    [VwOrganizationUserLicense].[Description] AS [Description], 
+    [VwOrganizationUserLicense].[IsProductActive] AS [IsProductActive], 
+    [VwOrganizationUserLicense].[LicenseCount] AS [LicenseCount], 
+    [VwOrganizationUserLicense].[ProductId] AS [ProductId], 
+    [VwOrganizationUserLicense].[IsProductUserActive] AS [IsProductUserActive], 
+    [VwOrganizationUserLicense].[LicenseUsed] AS [LicenseUsed]
+    FROM [dbo].[VwOrganizationUserLicense] AS [VwOrganizationUserLicense]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VwProductDetail" EntityType="Self.VwProductDetail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VwProductDetail].[ProductId] AS [ProductId], 
+    [VwProductDetail].[Name] AS [Name], 
+    [VwProductDetail].[Description] AS [Description], 
+    [VwProductDetail].[IsProductActive] AS [IsProductActive], 
+    [VwProductDetail].[LicenseCount] AS [LicenseCount], 
+    [VwProductDetail].[LicenseUsed] AS [LicenseUsed], 
+    [VwProductDetail].[OrganizationMasterId] AS [OrganizationMasterId], 
+    [VwProductDetail].[SystemUserId] AS [SystemUserId], 
+    [VwProductDetail].[IsProductUserActive] AS [IsProductUserActive]
+    FROM [dbo].[VwProductDetail] AS [VwProductDetail]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ColligoO365RMOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ColligoO365RMOEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="ErrorMessages" EntityType="ColligoO365RMOModel.ErrorMessage" />
+          <EntitySet Name="VwProductDetails" EntityType="ColligoO365RMOModel.VwProductDetail" />
+          <EntitySet Name="ContentLogs" EntityType="ColligoO365RMOModel.ContentLog" />
+          <EntitySet Name="EventSettings" EntityType="ColligoO365RMOModel.EventSetting" />
+          <EntitySet Name="Organizations" EntityType="ColligoO365RMOModel.Organization" />
+          <EntitySet Name="Products" EntityType="ColligoO365RMOModel.Product" />
+          <EntitySet Name="ProductLicenses" EntityType="ColligoO365RMOModel.ProductLicense" />
+          <EntitySet Name="ProductUsers" EntityType="ColligoO365RMOModel.ProductUser" />
+          <EntitySet Name="SystemUsers" EntityType="ColligoO365RMOModel.SystemUser" />
+          <EntitySet Name="VwOrganizations" EntityType="ColligoO365RMOModel.VwOrganization" />
+          <EntitySet Name="VwOrganizationUserLicenses" EntityType="ColligoO365RMOModel.VwOrganizationUserLicense" />
+          <EntitySet Name="ADGAgents" EntityType="ColligoO365RMOModel.ADGAgent" />
+          <EntitySet Name="VwEventSettings" EntityType="ColligoO365RMOModel.VwEventSetting" />
+          <EntitySet Name="VwADGAgents" EntityType="ColligoO365RMOModel.VwADGAgent" />
+          <EntitySet Name="VwEventSettingUserSetups" EntityType="ColligoO365RMOModel.VwEventSettingUserSetup" />
+          <EntitySet Name="OrganizationUsers" EntityType="ColligoO365RMOModel.OrganizationUser" />
+          <EntitySet Name="VwOrganizationUsers" EntityType="ColligoO365RMOModel.VwOrganizationUser" />
+          <FunctionImport Name="UspReportADGAgent" ReturnType="Collection(ColligoO365RMOModel.DashboardResult)">
+            <Parameter Name="OrganizationUrl" Mode="In" Type="String" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UspReportGetContentLog" ReturnType="Collection(ColligoO365RMOModel.DashboardContentLog)">
+            <Parameter Name="OrganizationUrl" Mode="In" Type="String" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+            <Parameter Name="CountError" Mode="In" Type="Boolean" />
+            <Parameter Name="PageNbr" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UspReportChartData" ReturnType="Collection(ColligoO365RMOModel.DashboardChartData)">
+            <Parameter Name="OrganizationUrl" Mode="In" Type="String" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="UspReportContentAuditSummary" ReturnType="Collection(ColligoO365RMOModel.ContentAuditSummary)">
+            <Parameter Name="OrganizationUrl" Mode="In" Type="String" />
+            <Parameter Name="SearchTerm" Mode="In" Type="String" />
+            <Parameter Name="PageNbr" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="AgentExecutionTimes" EntityType="ColligoO365RMOModel.AgentExecutionTime" />
+          <FunctionImport Name="UspEventSettingGetMappingCount" ReturnType="Collection(ColligoO365RMOModel.EventSettingCount)" >
+          <Parameter Name="OrganizationUrl" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="ErrorMessage">
+          <Key>
+            <PropertyRef Name="ErrorMessageId" />
+          </Key>
+          <Property Name="ErrorMessageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ErrorKey" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VwProductDetail">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="IsProductActive" />
+            <PropertyRef Name="LicenseCount" />
+            <PropertyRef Name="OrganizationMasterId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsProductActive" Type="Boolean" Nullable="false" />
+          <Property Name="LicenseCount" Type="Int32" Nullable="false" />
+          <Property Name="LicenseUsed" Type="Int32" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="SystemUserId" Type="Int32" />
+          <Property Name="IsProductUserActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ContentLog">
+          <Key>
+            <PropertyRef Name="ContentLogId" />
+          </Key>
+          <Property Name="ContentLogId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="ContentType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContentTypeId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DocId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LastModifiedTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FileType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EventColumnValue" Type="DateTime" Precision="3" />
+          <Property Name="Author" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ComplianceTag" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ComplianceTagId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ComplainceAssetId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DocUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsProcessed" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LibraryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="DocumentName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EventSetting">
+          <Key>
+            <PropertyRef Name="EventSettingId" />
+          </Key>
+          <Property Name="EventSettingId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="ContentType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContentTypeId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EventColumnName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EventColumnInternalName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="LastRetrivalTime" Type="DateTime" Precision="3" />
+          <Property Name="ContentSiteUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="OrganizationMasterId" />
+          </Key>
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationRootUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductLicense">
+          <Key>
+            <PropertyRef Name="ProductLicenseId" />
+          </Key>
+          <Property Name="ProductLicenseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="LicenseCount" Type="Int32" Nullable="false" />
+          <Property Name="LicenseUsed" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProductUser">
+          <Key>
+            <PropertyRef Name="ProductUserId" />
+          </Key>
+          <Property Name="ProductUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="SystemUserId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SystemUser">
+          <Key>
+            <PropertyRef Name="SystemUserId" />
+          </Key>
+          <Property Name="SystemUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VwOrganization">
+          <Key>
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="OrganizationRootUrl" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationRootUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VwOrganizationUserLicense">
+          <Key>
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="IsOrganizationActive" />
+          </Key>
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SystemUserId" Type="Int32" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="101" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsOrganizationActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsUserActive" Type="Boolean" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsProductActive" Type="Boolean" />
+          <Property Name="LicenseCount" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="IsProductUserActive" Type="Boolean" />
+          <Property Name="LicenseUsed" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ADGAgent">
+          <Key>
+            <PropertyRef Name="ADGAgentId" />
+          </Key>
+          <Property Name="ADGAgentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContentLogId" Type="Int64" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="ContentType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ComplianceTag" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ComplianceTagId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ComplainceAssetId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EventColumnValue" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsProcessed" Type="Boolean" Nullable="false" />
+          <Property Name="ProcessStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProcessDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LibraryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="DocId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VwEventSetting">
+          <Key>
+            <PropertyRef Name="EventSettingId" />
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="ContentType" />
+            <PropertyRef Name="ContentTypeId" />
+            <PropertyRef Name="EventColumnName" />
+            <PropertyRef Name="EventColumnInternalName" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedOn" />
+            <PropertyRef Name="OrganizationRootUrl" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="UserIsActive" />
+            <PropertyRef Name="ContentSiteUrl" />
+          </Key>
+          <Property Name="EventSettingId" Type="Int64" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="ContentType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContentTypeId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EventColumnName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EventColumnInternalName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastRetrivalTime" Type="DateTime" Precision="3" />
+          <Property Name="OrganizationRootUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserIsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ContentSiteUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TimeZone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Time" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VwADGAgent">
+          <Key>
+            <PropertyRef Name="ADGAgentId" />
+            <PropertyRef Name="ContentLogId" />
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="ContentType" />
+            <PropertyRef Name="ComplianceTag" />
+            <PropertyRef Name="ComplianceTagId" />
+            <PropertyRef Name="EventColumnValue" />
+            <PropertyRef Name="IsProcessed" />
+            <PropertyRef Name="LibraryName" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="CreatedOn" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="UserIsActive" />
+          </Key>
+          <Property Name="ADGAgentId" Type="Int64" Nullable="false" />
+          <Property Name="ContentLogId" Type="Int64" Nullable="false" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="ContentType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ComplianceTag" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ComplianceTagId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ComplainceAssetId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EventColumnValue" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsProcessed" Type="Boolean" Nullable="false" />
+          <Property Name="ProcessStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProcessDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LibraryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserIsActive" Type="Boolean" Nullable="false" />
+          <Property Name="DocId" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ADGProcessId" Type="String" MaxLength="240" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VwEventSettingUserSetup">
+          <Key>
+            <PropertyRef Name="OrganizationRootUrl" />
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="IsOrganizationActive" />
+            <PropertyRef Name="OrganizationUserId" />
+            <PropertyRef Name="IsOrganizationUserActive" />
+          </Key>
+          <Property Name="OrganizationRootUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsOrganizationActive" Type="Boolean" Nullable="false" />
+          <Property Name="OrganizationUserId" Type="Int32" Nullable="false" />
+          <Property Name="IsOrganizationUserActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrganizationUser">
+          <Key>
+            <PropertyRef Name="OrganizationUserId" />
+          </Key>
+          <Property Name="OrganizationUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="UserAccessTo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VwOrganizationUser">
+          <Key>
+            <PropertyRef Name="OrganizationMasterId" />
+            <PropertyRef Name="OrganizationName" />
+            <PropertyRef Name="OrganizationId" />
+            <PropertyRef Name="SystemUserId" />
+            <PropertyRef Name="EmailAddress" />
+            <PropertyRef Name="DisplayName" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="IsOrganizationActive" />
+            <PropertyRef Name="IsUserActive" />
+            <PropertyRef Name="OrganizationRootUrl" />
+          </Key>
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationId" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SystemUserId" Type="Int32" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsOrganizationActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsUserActive" Type="Boolean" Nullable="false" />
+          <Property Name="OrganizationRootUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="DashboardResult">
+          <Property Type="Int32" Name="ResultId" Nullable="false" />
+          <Property Type="Int64" Name="ItemProcessedToday" Nullable="false" />
+          <Property Type="Int64" Name="ItemProcessedToDate" Nullable="false" />
+          <Property Type="Int64" Name="ItemErrorsToDate" Nullable="false" />
+          <Property Type="Int64" Name="EventCreatedToday" Nullable="false" />
+          <Property Type="Int64" Name="EventUpdatedToday" Nullable="false" />
+          <Property Type="Int64" Name="EventCreatedToDate" Nullable="false" />
+          <Property Type="Int64" Name="TotalActiveContentType" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="DashboardContentLog">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="RowNumber" Nullable="true" />
+          <Property Type="Int64" Name="ContentLogId" Nullable="false" />
+          <Property Type="String" Name="ContentType" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DocId" Nullable="true" />
+          <Property Type="DateTime" Name="LastModifiedTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="FileType" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Title" Nullable="true" />
+          <Property Type="DateTime" Name="EventColumnValue" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ComplianceTag" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ComplianceTagId" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ComplainceAssetId" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DocUrl" Nullable="false" />
+          <Property Type="String" Name="LibraryName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DocumentName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ErrorLog" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="DashboardChartData">
+          <Property Type="Int32" Name="OrganizationMasterId" Nullable="false" />
+          <Property Type="Int32" Name="ResultSeries" Nullable="true" />
+          <Property Type="Int32" Name="ItemProcessed" Nullable="false" />
+          <Property Type="Int32" Name="ItemFailed" Nullable="false" />
+          <Property Type="Int32" Name="EventCreated" Nullable="false" />
+          <Property Type="String" Name="ReportTimeline" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="ContentAuditSummary">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="RowNumber" Nullable="true" />
+          <Property Type="Int64" Name="ContentLogId" Nullable="false" />
+          <Property Type="String" Name="ContentType" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="DocId" Nullable="true" />
+          <Property Type="DateTime" Name="LastModifiedTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="FileType" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="EventColumnValue" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ComplianceTag" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ComplianceTagId" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ComplainceAssetId" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DocUrl" Nullable="false" />
+          <Property Type="String" Name="DocumentName" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ModifiedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ProcessStatus" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="EventCreatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ProcessDescription" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="AgentExecutionTime">
+          <Key>
+            <PropertyRef Name="AgentExecutionTimeId" />
+          </Key>
+          <Property Name="AgentExecutionTimeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizationMasterId" Type="Int32" Nullable="false" />
+          <Property Name="TimeZoneDisplayName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TimeZone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Time" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="EventSettingCount">
+          <Property Type="Int32" Name="MappedCount" Nullable="false" />
+          <Property Type="String" Name="OrganizationRootUrl" Nullable="false" />
+          <Property Type="String" Name="ContentSiteUrl" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ColligoO365RMOModelStoreContainer" CdmEntityContainer="ColligoO365RMOEntities" >
+          <EntitySetMapping Name="ErrorMessages">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.ErrorMessage">
+              <MappingFragment StoreEntitySet="ErrorMessage">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ErrorKey" ColumnName="ErrorKey" />
+                <ScalarProperty Name="ErrorMessageId" ColumnName="ErrorMessageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwProductDetails">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.VwProductDetail">
+              <MappingFragment StoreEntitySet="VwProductDetail">
+                <ScalarProperty Name="IsProductUserActive" ColumnName="IsProductUserActive" />
+                <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="LicenseUsed" ColumnName="LicenseUsed" />
+                <ScalarProperty Name="LicenseCount" ColumnName="LicenseCount" />
+                <ScalarProperty Name="IsProductActive" ColumnName="IsProductActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContentLogs">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.ContentLog">
+              <MappingFragment StoreEntitySet="ContentLog">
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="LibraryName" ColumnName="LibraryName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+                <ScalarProperty Name="DocUrl" ColumnName="DocUrl" />
+                <ScalarProperty Name="ComplainceAssetId" ColumnName="ComplainceAssetId" />
+                <ScalarProperty Name="ComplianceTagId" ColumnName="ComplianceTagId" />
+                <ScalarProperty Name="ComplianceTag" ColumnName="ComplianceTag" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="EventColumnValue" ColumnName="EventColumnValue" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="LastModifiedTime" ColumnName="LastModifiedTime" />
+                <ScalarProperty Name="DocId" ColumnName="DocId" />
+                <ScalarProperty Name="ContentTypeId" ColumnName="ContentTypeId" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="ContentLogId" ColumnName="ContentLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventSettings">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.EventSetting">
+              <MappingFragment StoreEntitySet="EventSetting">
+                <ScalarProperty Name="ContentSiteUrl" ColumnName="ContentSiteUrl" />
+                <ScalarProperty Name="LastRetrivalTime" ColumnName="LastRetrivalTime" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EventColumnInternalName" ColumnName="EventColumnInternalName" />
+                <ScalarProperty Name="EventColumnName" ColumnName="EventColumnName" />
+                <ScalarProperty Name="ContentTypeId" ColumnName="ContentTypeId" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="EventSettingId" ColumnName="EventSettingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OrganizationRootUrl" ColumnName="OrganizationRootUrl" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductLicenses">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.ProductLicense">
+              <MappingFragment StoreEntitySet="ProductLicense">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LicenseUsed" ColumnName="LicenseUsed" />
+                <ScalarProperty Name="LicenseCount" ColumnName="LicenseCount" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="ProductLicenseId" ColumnName="ProductLicenseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductUsers">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.ProductUser">
+              <MappingFragment StoreEntitySet="ProductUser">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductUserId" ColumnName="ProductUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemUsers">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.SystemUser">
+              <MappingFragment StoreEntitySet="SystemUser">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwOrganizations">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.VwOrganization">
+              <MappingFragment StoreEntitySet="VwOrganization">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OrganizationRootUrl" ColumnName="OrganizationRootUrl" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwOrganizationUserLicenses">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.VwOrganizationUserLicense">
+              <MappingFragment StoreEntitySet="VwOrganizationUserLicense">
+                <ScalarProperty Name="LicenseUsed" ColumnName="LicenseUsed" />
+                <ScalarProperty Name="IsProductUserActive" ColumnName="IsProductUserActive" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="LicenseCount" ColumnName="LicenseCount" />
+                <ScalarProperty Name="IsProductActive" ColumnName="IsProductActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsUserActive" ColumnName="IsUserActive" />
+                <ScalarProperty Name="IsOrganizationActive" ColumnName="IsOrganizationActive" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADGAgents">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.ADGAgent">
+              <MappingFragment StoreEntitySet="ADGAgent">
+                <ScalarProperty Name="DocId" ColumnName="DocId" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LibraryName" ColumnName="LibraryName" />
+                <ScalarProperty Name="ProcessDescription" ColumnName="ProcessDescription" />
+                <ScalarProperty Name="ProcessStatus" ColumnName="ProcessStatus" />
+                <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+                <ScalarProperty Name="EventColumnValue" ColumnName="EventColumnValue" />
+                <ScalarProperty Name="ComplainceAssetId" ColumnName="ComplainceAssetId" />
+                <ScalarProperty Name="ComplianceTagId" ColumnName="ComplianceTagId" />
+                <ScalarProperty Name="ComplianceTag" ColumnName="ComplianceTag" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="ContentLogId" ColumnName="ContentLogId" />
+                <ScalarProperty Name="ADGAgentId" ColumnName="ADGAgentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwEventSettings">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.VwEventSetting">
+              <MappingFragment StoreEntitySet="VwEventSetting">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="ContentSiteUrl" ColumnName="ContentSiteUrl" />
+                <ScalarProperty Name="UserIsActive" ColumnName="UserIsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OrganizationRootUrl" ColumnName="OrganizationRootUrl" />
+                <ScalarProperty Name="LastRetrivalTime" ColumnName="LastRetrivalTime" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EventColumnInternalName" ColumnName="EventColumnInternalName" />
+                <ScalarProperty Name="EventColumnName" ColumnName="EventColumnName" />
+                <ScalarProperty Name="ContentTypeId" ColumnName="ContentTypeId" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="EventSettingId" ColumnName="EventSettingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwADGAgents">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.VwADGAgent">
+              <MappingFragment StoreEntitySet="VwADGAgent">
+                <ScalarProperty Name="ADGProcessId" ColumnName="ADGProcessId" />
+                <ScalarProperty Name="DocId" ColumnName="DocId" />
+                <ScalarProperty Name="UserIsActive" ColumnName="UserIsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LibraryName" ColumnName="LibraryName" />
+                <ScalarProperty Name="ProcessDescription" ColumnName="ProcessDescription" />
+                <ScalarProperty Name="ProcessStatus" ColumnName="ProcessStatus" />
+                <ScalarProperty Name="IsProcessed" ColumnName="IsProcessed" />
+                <ScalarProperty Name="EventColumnValue" ColumnName="EventColumnValue" />
+                <ScalarProperty Name="ComplainceAssetId" ColumnName="ComplainceAssetId" />
+                <ScalarProperty Name="ComplianceTagId" ColumnName="ComplianceTagId" />
+                <ScalarProperty Name="ComplianceTag" ColumnName="ComplianceTag" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="ContentLogId" ColumnName="ContentLogId" />
+                <ScalarProperty Name="ADGAgentId" ColumnName="ADGAgentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwEventSettingUserSetups">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.VwEventSettingUserSetup">
+              <MappingFragment StoreEntitySet="VwEventSettingUserSetup">
+                <ScalarProperty Name="IsOrganizationUserActive" ColumnName="IsOrganizationUserActive" />
+                <ScalarProperty Name="OrganizationUserId" ColumnName="OrganizationUserId" />
+                <ScalarProperty Name="IsOrganizationActive" ColumnName="IsOrganizationActive" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="OrganizationRootUrl" ColumnName="OrganizationRootUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrganizationUsers">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.OrganizationUser">
+              <MappingFragment StoreEntitySet="OrganizationUser">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UserAccessTo" ColumnName="UserAccessTo" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="OrganizationUserId" ColumnName="OrganizationUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VwOrganizationUsers">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.VwOrganizationUser">
+              <MappingFragment StoreEntitySet="VwOrganizationUser">
+                <ScalarProperty Name="OrganizationRootUrl" ColumnName="OrganizationRootUrl" />
+                <ScalarProperty Name="IsUserActive" ColumnName="IsUserActive" />
+                <ScalarProperty Name="IsOrganizationActive" ColumnName="IsOrganizationActive" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UspReportADGAgent" FunctionName="ColligoO365RMOModel.Store.UspReportADGAgent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ColligoO365RMOModel.DashboardResult">
+                <ScalarProperty Name="ResultId" ColumnName="ResultId" />
+                <ScalarProperty Name="ItemProcessedToday" ColumnName="ItemProcessedToday" />
+                <ScalarProperty Name="ItemProcessedToDate" ColumnName="ItemProcessedToDate" />
+                <ScalarProperty Name="ItemErrorsToDate" ColumnName="ItemErrorsToDate" />
+                <ScalarProperty Name="EventCreatedToday" ColumnName="EventCreatedToday" />
+                <ScalarProperty Name="EventUpdatedToday" ColumnName="EventUpdatedToday" />
+                <ScalarProperty Name="EventCreatedToDate" ColumnName="EventCreatedToDate" />
+                <ScalarProperty Name="TotalActiveContentType" ColumnName="TotalActiveContentType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UspReportGetContentLog" FunctionName="ColligoO365RMOModel.Store.UspReportGetContentLog">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ColligoO365RMOModel.DashboardContentLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="ContentLogId" ColumnName="ContentLogId" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="DocId" ColumnName="DocId" />
+                <ScalarProperty Name="LastModifiedTime" ColumnName="LastModifiedTime" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EventColumnValue" ColumnName="EventColumnValue" />
+                <ScalarProperty Name="ComplianceTag" ColumnName="ComplianceTag" />
+                <ScalarProperty Name="ComplianceTagId" ColumnName="ComplianceTagId" />
+                <ScalarProperty Name="ComplainceAssetId" ColumnName="ComplainceAssetId" />
+                <ScalarProperty Name="DocUrl" ColumnName="DocUrl" />
+                <ScalarProperty Name="LibraryName" ColumnName="LibraryName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+                <ScalarProperty Name="ErrorLog" ColumnName="ErrorLog" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UspReportChartData" FunctionName="ColligoO365RMOModel.Store.UspReportChartData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ColligoO365RMOModel.DashboardChartData">
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="ResultSeries" ColumnName="ResultSeries" />
+                <ScalarProperty Name="ItemProcessed" ColumnName="ItemProcessed" />
+                <ScalarProperty Name="ItemFailed" ColumnName="ItemFailed" />
+                <ScalarProperty Name="EventCreated" ColumnName="EventCreated" />
+                <ScalarProperty Name="ReportTimeline" ColumnName="ReportTimeline" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UspReportContentAuditSummary" FunctionName="ColligoO365RMOModel.Store.UspReportContentAuditSummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ColligoO365RMOModel.ContentAuditSummary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="ContentLogId" ColumnName="ContentLogId" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="DocId" ColumnName="DocId" />
+                <ScalarProperty Name="LastModifiedTime" ColumnName="LastModifiedTime" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="EventColumnValue" ColumnName="EventColumnValue" />
+                <ScalarProperty Name="ComplianceTag" ColumnName="ComplianceTag" />
+                <ScalarProperty Name="ComplianceTagId" ColumnName="ComplianceTagId" />
+                <ScalarProperty Name="ComplainceAssetId" ColumnName="ComplainceAssetId" />
+                <ScalarProperty Name="DocUrl" ColumnName="DocUrl" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ProcessStatus" ColumnName="ProcessStatus" />
+                <ScalarProperty Name="EventCreatedDate" ColumnName="EventCreatedDate" />
+                <ScalarProperty Name="ProcessDescription" ColumnName="ProcessDescription" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="AgentExecutionTimes">
+            <EntityTypeMapping TypeName="ColligoO365RMOModel.AgentExecutionTime">
+              <MappingFragment StoreEntitySet="AgentExecutionTime">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="TimeZoneDisplayName" ColumnName="TimeZoneDisplayName" />
+                <ScalarProperty Name="OrganizationMasterId" ColumnName="OrganizationMasterId" />
+                <ScalarProperty Name="AgentExecutionTimeId" ColumnName="AgentExecutionTimeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UspEventSettingGetMappingCount" FunctionName="ColligoO365RMOModel.Store.UspEventSettingGetMappingCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ColligoO365RMOModel.EventSettingCount">
+                <ScalarProperty Name="MappedCount" ColumnName="MappedCount" />
+                <ScalarProperty Name="OrganizationRootUrl" ColumnName="OrganizationRootUrl" />
+                <ScalarProperty Name="ContentSiteUrl" ColumnName="ContentSiteUrl" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

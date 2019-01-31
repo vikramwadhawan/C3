@@ -1,0 +1,34 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    //"target": "es6",
+    "baseUrl": "./",
+    "outDir": "./scripts/out-tsc",
+    "target": "es5",
+    "module": "system",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "noImplicitAny": false,
+    "noStrictGenericChecks": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ]
+    //"types": [
+    //  "core-js"
+    //]
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./App"
+  ]
+}
+

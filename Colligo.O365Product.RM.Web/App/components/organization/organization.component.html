@@ -1,0 +1,190 @@
+﻿<div *ngIf="isProcessing">
+    <lightbox [loading]="isProcessing" [loaderMessage]="'loading...'"></lightbox>
+</div>
+<div *ngIf="showMessageBanner">
+    <message-banner [type]="messageBannerType" [message]="bannerMessage" (onMessageBannerClose)="onNotificationClose($event)"> </message-banner>
+</div>
+<div class="clearfix">
+</div>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="page-header">
+        <h2>Site Access Setup</h2>
+    </div>
+    <div class="content-main-section">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Site Url</label>
+                    <input type="text" formControlName="siteUrl" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Time Zone</label><asterik></asterik>
+                    <ngx-select [allowClear]="true"
+                                optionValueField="id"
+                                optionTextField="displayName"
+                                name="drpTimeZone"
+                                [items]="timeZones"
+                                [noAutoComplete]="true"
+                                placeholder="Select Zone"
+                                [required]="true"
+                                [ngClass]="formControlClass"
+                                formControlName="ddlTimeZone"
+                                #drpTimeZone>
+                    </ngx-select>
+                    <div *ngIf="submitted && f.ddlTimeZone.errors" class="invalid-feedback">
+                        <div *ngIf="f.ddlTimeZone.errors.required">Time Zone is required</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Time Hour</label><asterik></asterik>
+                    <ngx-select [allowClear]="true"
+                                name="drpTimeHour"
+                                [items]="availableTimeHours"
+                                [noAutoComplete]="true"
+                                placeholder="Select Hour"
+                                [required]="true"
+                                [ngClass]="formControlClass"
+                                formControlName="ddlTimeHours"
+                                #drpTimeHour>
+                    </ngx-select>
+                    <div *ngIf="submitted && f.ddlTimeHours.errors" class="invalid-feedback">
+                        <div *ngIf="f.ddlTimeHours.errors.required">Time Hour is required</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Time Minute</label><asterik></asterik>
+                    <ngx-select [allowClear]="true"
+                                name="drpTimeMinute"
+                                [items]="availableTimeMinutes"
+                                [noAutoComplete]="true"
+                                placeholder="Select Minutes"
+                                [required]="true"
+                                [ngClass]="formControlClass"
+                                formControlName="ddlTimeMinutes"
+                                #drpTimeMinute>
+                    </ngx-select>
+                    <div *ngIf="submitted && f.ddlTimeMinutes.errors" class="invalid-feedback">
+                        <div *ngIf="f.ddlTimeMinutes.errors.required">Time Minute is required</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>SP User ID</label> <asterik></asterik>
+                    <input type="text" formControlName="spUserId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.spUserId.errors }" />
+                    <div *ngIf="submitted && f.spUserId.errors" class="invalid-feedback">
+                        <div *ngIf="f.spUserId.errors.required">SP UserId is required</div>
+                    </div>
+                    <div *ngIf="f.spUserId.value!=='' && f.spUserId.invalid" class="invalid-feedback">
+                        <div *ngIf="f.spUserId.errors.email">Sp User Id must be a valid email address.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>SP Password</label> <asterik></asterik>
+                    <input type="password" name="spPassword" formControlName="spPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.spPassword.errors }" />
+                    <div *ngIf="submitted && f.spPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.spPassword.errors.required">SP Password is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Confirm SP Password</label> <asterik></asterik>
+                    <input type="password" formControlName="spConfirmPassword" appConfirmEqualValidator="spPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.spConfirmPassword.errors }" />
+                    <div *ngIf="submitted && f.spConfirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="!f.spConfirmPassword.touched && f.spConfirmPassword.errors.required">SP Confirm Password is required</div>
+                    </div>
+                    <div *ngIf="submitted && f.spConfirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.spConfirmPassword.touched && f.spConfirmPassword.errors?.notEqual">SP Confirm Password must match.</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label class="container-check-radio mb-4 mt-4">
+                    Same As Office 365
+                    <input type="checkbox" formControlName="isSameCredential" (change)="checkSameCredential()" />
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+
+
+
+        <div id="divSPCredentialsView" *ngIf="!showAdgSection">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Adg User Id  </label> <asterik></asterik>
+                        <input type="text" formControlName="adgUserId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.adgUserId.errors }" />
+                        <div *ngIf="submitted && f.adgUserId.errors" class="invalid-feedback">
+                            <div *ngIf="f.adgUserId.errors.required && showAdgSection">Adg User Id is required</div>
+                        </div>
+                        <div *ngIf="f.adgUserId.value!=='' && f.adgUserId.invalid" class="invalid-feedback">
+                            <div *ngIf="f.adgUserId.errors.email">Adg User Id must be a valid email address.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Adg Password</label><asterik></asterik>
+                        <input type="password" formControlName="adgPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.adgPassword.errors }" />
+                        <div *ngIf="submitted && f.adgPassword.errors" class="invalid-feedback">
+                            <div *ngIf="f.adgPassword.errors.required && !showAdgSection"> Adg Password is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Confirm Adg Password</label>  <asterik></asterik>
+                        <input type="password" formControlName="adgConfirmPassword" appConfirmEqualValidator="adgPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.adgConfirmPassword.errors }" />
+                        <div *ngIf="submitted && f.adgConfirmPassword.errors" class="invalid-feedback">
+                            <div *ngIf="f.adgConfirmPassword.errors.required && !showAdgSection">Confirm Adg Password is required</div>
+                        </div>
+                        <div *ngIf="submitted && f.adgConfirmPassword.errors" class="invalid-feedback">
+                            <div *ngIf="f.adgConfirmPassword.touched && f.adgConfirmPassword.errors?.notEqual">Adg Confirm Password must match.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row form-footer">
+        <div class="form-group w-100 text-right">
+            <button [disabled]="" class="btn btn-primary">Save</button>
+            <input type="button" value="Cancel" class="btn btn-secondary" (click)="goToHome()" />
+            <input type="button" value="Reset" class="btn btn-secondary" (click)="resetPage()" />
+        </div>
+    </div>
+</form>

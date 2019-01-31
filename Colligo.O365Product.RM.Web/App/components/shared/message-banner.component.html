@@ -1,0 +1,38 @@
+﻿<div>
+    <div *ngIf="_type === 'Error' then notifyError; else notifyMessage">
+
+    </div>
+
+    <ng-template #notifyError>
+        <div class="ms-MessageBanner" style="color: white; font-weight:bold;background-color:red;min-width:100%;padding-left:0; margin-left:0;height:45px;">
+            <div class="ms-MessageBanner-content">
+                <div class="ms-MessageBanner-text"  style="margin-left:0px;padding:15px;">
+                    <div class="ms-MessageBanner-clipper">
+                        {{_message}}
+                    </div>
+                </div>
+            </div>
+            <button class="ms-MessageBanner-close" (click)="onClose()">
+                <i class="ms-Icon ms-Icon--Clear"></i>
+            </button>
+        </div>
+    </ng-template>
+
+    <ng-template #notifyMessage>
+        <div class="ms-MessageBanner" style="color: white; font-weight:bold;background-color:green;width:100%;min-width:100%;padding-left:0; margin-left:0;height:45px;">
+            <div class="ms-MessageBanner-content">
+                <div class="ms-MessageBanner-text" style="margin-left:0px;padding:15px;">
+                    <div class="ms-MessageBanner-clipper">
+                        {{_message}}
+                    </div>
+                </div>
+                <button class="ms-MessageBanner-expand">
+                    <i class="ms-Icon ms-Icon--ChevronDown"></i>
+                </button>
+            </div>
+            <button class="ms-MessageBanner-close">
+                <i class="ms-Icon ms-Icon--Clear"></i>
+            </button>
+        </div>
+    </ng-template>
+</div>

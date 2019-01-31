@@ -1,0 +1,55 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+//@import '~assets/scss/vendor/bootstrap';
+
+.btn {
+  font-weight: $btn-font-weight;
+  @include button-size(0.6125rem, 1.5rem,$font-size-base,$btn-line-height,$btn-border-radius);
+}
+
+.btn + .btn-link{
+        @include button-size(0.6125rem, 1.5rem,$font-size-base,$btn-line-height,$btn-border-radius);
+    }
+
+.btn-small{
+    @include button-size(0.4125rem, 1rem,0.75rem,$btn-line-height,$btn-border-radius);  border: 1px solid transparent;
+      
+    i{margin-right:.25rem; }
+}
+
+.btn-secondary {
+    background-color: $blue;
+    border: 0;
+
+    &:hover {
+        background-color: #123271;
+    }
+}
+
+.disabled-link{
+  pointer-events: none;
+  color: grey !important;
+  cursor: not-allowed;
+}
+
+// Common Icons sets button 
+.grid-icon-sets{
+  float: right;
+  .btn{
+    background-color: $light-grey;
+    padding: 0;
+    @include size(24px);
+    margin-left: 0.25rem;
+    i{
+      font-size: convert(14, px, rems);
+    }
+  }
+}
+
+@include media-breakpoint-between(xs, sm) {
+  .btn{
+    width: 100%;
+  }
+}

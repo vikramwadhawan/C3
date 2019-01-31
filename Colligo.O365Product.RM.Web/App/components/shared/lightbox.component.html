@@ -1,0 +1,16 @@
+﻿<!--<div align="center">
+    <br><br><br><br>
+    <a class="button" (click)="showPopup()">Click here to Log In</a>
+</div>-->
+
+<div [ngClass]="{cover: _loading===true}" [hidden]="!_loading">
+     <div style="text-align: center; width: 100%; position: relative; top: 50%; margin-top: -65px;">
+        
+        <loader [loaderMessage]="_loaderMessage"></loader>
+    </div>
+</div>
+
+
+
+<div id="cover">
+</div>

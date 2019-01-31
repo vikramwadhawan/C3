@@ -1,0 +1,95 @@
+﻿<div *ngIf="isProcessing">
+    <lightbox [loading]="isProcessing" [loaderMessage]="'loading...'"></lightbox>
+</div>
+<div *ngIf="showMessageBanner">
+    <message-banner [type]="messageBannerType" [message]="bannerMessage" (onMessageBannerClose)="onNotificationClose($event)"> </message-banner>
+</div>
+<div>
+    <div class="page-header">
+        <h2 *ngIf="mode==='error'">
+            Items with Errors to date
+        </h2>
+        <h2 *ngIf="mode!=='error'">
+            Item Processed Today
+        </h2>
+    </div>  
+</div>
+<div *ngIf="showLogs" class="table-responsive">
+    <table class="table custom-table" infinite-scroll
+           [scrollWindow]="true"
+           [infiniteScrollDistance]="scrollDistance"
+           [infiniteScrollUpDistance]="scrollUpDistance"
+           [infiniteScrollThrottle]="throttle"
+           (scrolled)="onErrorLogScrollDown()"
+           [infiniteScrollDisabled]="isFullyErrorContentLoad">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    Content Type
+                </th>
+                <th>
+                    Doc Id
+                </th>
+                <th>
+                    File Type
+                </th>
+                <th>
+                    Event Date
+                </th>
+                <th>
+                    Compliance Tag
+                </th>
+                <th>
+                    Compliance Tag Id
+                </th>
+                <th>
+                    Complaince Asset Id
+                </th>
+                <th>
+                    Document Url
+                </th>
+                <th>
+                    Created On
+                </th>
+                <th>
+                    Error
+                </th>
+            </tr>
+        </thead>
+        <tr *ngFor="let rowData of errorLogs">
+            <td>
+                {{rowData.contentType}}
+            </td>
+            <td>
+                {{rowData.docId}}
+            </td>
+            <td>
+                {{rowData.fileType}}
+            </td>
+            <td>
+                {{rowData.eventColumnValue  | date:'MM/dd/yyyy'}}
+            </td>
+            <td>
+                {{rowData.complianceTag}}
+            </td>
+            <td>
+                {{rowData.complianceTagId}}
+            </td>
+            <td>
+                {{rowData.complainceAssetId}}
+            </td>
+            <td>
+                {{rowData.docUrl}}
+            </td>
+            <td>
+                {{rowData.createdOn | date:'MM/dd/yyyy'}}
+            </td>
+            <td>
+                {{rowData.errorLog}}
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+
